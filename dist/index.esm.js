@@ -1874,8 +1874,8 @@ var Icon$P = function (props) {
 
 var Logo = function (_a) {
     var isDark = _a.isDark, props = __rest(_a, ["isDark"]);
-    return (React.createElement(Svg, __assign({ viewBox: "0 0 205 26" }, props),
-        React.createElement("image", { width: "205", height: "26", href: isDark ? '/images/egg/LogoTextNewDark.png' : '/images/egg/LogoTextNewWhite.png' })));
+    return (React.createElement(Svg, __assign({ viewBox: "0 0 205 40" }, props),
+        React.createElement("image", { width: "205", height: "40", href: isDark ? '/images/egg/LogoTextNewDark.png' : '/images/egg/LogoTextNewWhite.png' })));
 };
 
 var Icon$Q = function (props) {
@@ -2112,11 +2112,11 @@ var links = [
         items: [
             {
                 label: 'Exchange',
-                href: 'https://swap.kudex.finance/',
+                href: 'https://swap.kufarm.finance/',
             },
             {
                 label: 'Liquidity',
-                href: 'https://swap.kudex.finance/#/pool',
+                href: 'https://swap.kufarm.finance/#/pool',
             },
         ],
     },
@@ -2133,7 +2133,7 @@ var links = [
     {
         label: 'Request Listing',
         icon: 'HandshakeIcon',
-        href: 'https://t.me/Schizonacci',
+        href: 'https://t.me/',
     },
     {
         label: 'More',
@@ -2141,11 +2141,11 @@ var links = [
         items: [
             {
                 label: 'Github',
-                href: 'https://github.com/kudexkcc/',
+                href: 'https://github.com/kufarm/',
             },
             {
                 label: 'Docs',
-                href: 'https://docs.kudex.finance/',
+                href: 'https://docs.kufarm.finance/',
             },
         ],
     },
@@ -2154,42 +2154,12 @@ var socials = [
     {
         label: "Telegram",
         icon: "TelegramIcon",
-        href: "https://t.me/KudexKCC",
-        items: [
-            {
-                label: "English",
-                href: "https://t.me/KudexKCC",
-            },
-            {
-                label: "Deutsche",
-                href: "https://t.me/KudexKCCDE",
-            },
-            {
-                label: "Français",
-                href: "https://t.me/KudexKCCFR",
-            },
-            {
-                label: "日本語",
-                href: "https://t.me/KudexKCCJP",
-            },
-            {
-                label: "中文",
-                href: "https://t.me/KudexKCCCN",
-            },
-            {
-                label: "ภาษาไทย",
-                href: "https://t.me/KudexKCCTH",
-            },
-            {
-                label: "русский",
-                href: "https://t.me/KudexKCCRU",
-            },
-        ],
+        href: "https://t.me/kufarmKCC",
     },
     {
         label: "Twitter",
         icon: "TwitterIcon",
-        href: "https://twitter.com/kudexkcc",
+        href: "https://twitter.com/kufarmkcc",
     },
 ];
 var MENU_HEIGHT = 64;
@@ -2313,9 +2283,20 @@ var PanelFooter = function (_a) {
                 React.createElement(Icon$l, null))));
     }
     return (React.createElement(Container$4, null,
-        React.createElement(SocialEntry, null, cakePriceUsd ? (React.createElement(PriceLink, { href: priceLink, target: "_blank" },
-            React.createElement(Icon$v, { width: "24px", mr: "8px" }),
-            React.createElement(Text, { color: "textSubtle", bold: true }, cakePriceUsd.toFixed(5) + " KCS"))) : (React.createElement(Skeleton, { width: 80, height: 24 }))),
+        React.createElement(SocialEntry, null,
+            cakePriceUsd ? (React.createElement(PriceLink, { href: priceLink, target: "_blank" },
+                React.createElement(Icon$v, { width: "24px", mr: "8px" }),
+                React.createElement(Text, { color: "textSubtle", bold: true }, "$" + cakePriceUsd.toFixed(3)))) : (React.createElement(Skeleton, { width: 80, height: 24 })),
+            React.createElement(Flex, null, socials.map(function (social, index) {
+                var Icon = Icons$1[social.icon];
+                var iconProps = { width: "24px", color: "textSubtle", style: { cursor: "pointer" } };
+                var mr = index < socials.length - 1 ? "8px" : 0;
+                if (social.items) {
+                    return (React.createElement(Dropdown, { key: social.label, position: "top", target: React.createElement(Icon, __assign({}, iconProps, { mr: mr })) }, social.items.map(function (item) { return (React.createElement(Link, { external: true, key: item.label, href: item.href, "aria-label": item.label, color: "textSubtle" }, item.label)); })));
+                }
+                return (React.createElement(Link, { external: true, key: social.label, href: social.href, "aria-label": social.label, mr: mr },
+                    React.createElement(Icon, __assign({}, iconProps))));
+            }))),
         React.createElement(SettingsEntry, null,
             React.createElement(Button, { variant: "text", onClick: function () { return toggleTheme(!isDark); } },
                 React.createElement(Flex, { alignItems: "center" },
@@ -2326,16 +2307,6 @@ var PanelFooter = function (_a) {
                     React.createElement(Text, { color: "textSubtle" }, currentLang === null || currentLang === void 0 ? void 0 : currentLang.toUpperCase())) }, langs.map(function (lang) { return (React.createElement(MenuButton, { key: lang.code, fullWidth: true, onClick: function () { return setLang(lang); }, 
                 // Safari fix
                 style: { minHeight: "32px", height: "auto" } }, lang.language)); })))));
-            React.createElement(Flex, null, socials.map(function (social, index) {
-                var Icon = Icons$1[social.icon];
-                var iconProps = { width: "24px", color: "textSubtle", style: { cursor: "pointer" } };
-                var mr = index < socials.length - 1 ? "8px" : 0;
-                if (social.items) {
-                    return (React.createElement(Dropdown, { key: social.label, position: "top", target: React.createElement(Icon, __assign({}, iconProps, { mr: mr })) }, social.items.map(function (item) { return (React.createElement(Link, { external: true, key: item.label, href: item.href, "aria-label": item.label, color: "textSubtle" }, item.label)); })));
-                }
-                return (React.createElement(Link, { external: true, key: social.label, href: social.href, "aria-label": social.label, mr: mr },
-                    React.createElement(Icon, __assign({}, iconProps))));
-            })))));
 };
 var templateObject_1$C, templateObject_2$c, templateObject_3$7, templateObject_4$2;
 
@@ -2764,7 +2735,7 @@ var ResetCSS = createGlobalStyle(templateObject_1$K || (templateObject_1$K = __m
 var templateObject_1$K;
 
 var baseColors = {
-    failure: "#ED4B9E",
+    ffailure: "#ED4B9E",
   primary: "#58ccb6",
   primaryBright: "#58ccb6",
   primaryDark: "#58ccb6",
@@ -2775,7 +2746,7 @@ var baseColors = {
 var brandColors = {
     binance: "#F0B90B",
 };
-var lightColors = __assign(__assign(__assign({}, baseColors), brandColors), {background: "#FAF9FA", backgroundDisabled: "#E9EAEB", contrast: "#191326", invertedContrast: "#FFFFFF", input: "#eeeaf4", tertiary: "#EFF4F5", text: "#452A7A", textDisabled: "#BDC2C4", textSubtle: "#58ccb6", borderColor: "#E9EAEB", card: "#FFFFFF", gradients: {
+var lightColors = __assign(__assign(__assign({}, baseColors), brandColors), { background: "#FAF9FA", backgroundDisabled: "#E9EAEB", contrast: "#191326", invertedContrast: "#FFFFFF", input: "#eeeaf4", tertiary: "#EFF4F5", text: "#452A7A", textDisabled: "#BDC2C4", textSubtle: "#58ccb6", borderColor: "#E9EAEB", card: "#FFFFFF", gradients: {
         bubblegum: "linear-gradient(139.73deg, #E6FDFF 0%, #F3EFFF 100%)",
     } });
 var darkColors = __assign(__assign(__assign({}, baseColors), brandColors), { secondary: "#54ac93", background: "#266956", backgroundDisabled: "#3c3742", contrast: "#FFFFFF", invertedContrast: "#191326", input: "#483f5a", primaryDark: "#0098A1", tertiary: "#1c5243", text: "#EAE2FC", textDisabled: "#666171", textSubtle: "#c2d4d0", borderColor: "#524B63", card: "#020a1d", gradients: {
